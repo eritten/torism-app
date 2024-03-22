@@ -1,7 +1,7 @@
 const express = require('express');
 const encodeJsonWebToken = require('../core/encodeJsonWebToken');
 const hashPassword = require('../core/password_hash');
-const { User } = require('../models/app.model');
+const { User } = require('../models/user.model');
 const userInputValidate = require('../validators/user_validation');
 const bcrypt = require('bcryptjs');
 

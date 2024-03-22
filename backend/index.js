@@ -1,4 +1,4 @@
-const { authService } = require("./startup/service");
+const { authService } = require("./startup/authService");
 const express = require("express");
 require("./startup/database_config");
 
