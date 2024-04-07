@@ -12,12 +12,12 @@ router.post("/change-password", authMiddleware, async (req, res) => {
     const newPassword = req.body.password;
     // Retrieving the user from the database.
     const user = await User.findOne({ email: userEmail });
-    const comparePasswords = await bcrypt.compare(password, user.password);
+    const comparePasswords = await bcrypt.compare(newPassword, user.password);
 
     if (comparePasswords) {
         return res.status(401).json({ "message": "Your new password cannot be the same as your old password" });
     }
-    const hashedPassword = await hashPassword(password);
+    const hashedPassword = await hashPassword(newPassword);
     user.password = hashedPassword;
     await user.save();
     res.json({ "message": "Password changed successfully" });
