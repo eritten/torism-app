@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-function generateRandomCode(length) {
+async function generateRandomCode(length) {
     // Generate random bytes
     const buffer = crypto.randomBytes(length);
 

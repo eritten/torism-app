@@ -31,11 +31,11 @@ async function sendMail(from, to, subject, html, transporter) {
 let transporter = createTransporter("mail.niveel.com", "adm@niveel.com", "!Store526$");
 
 // Function to send email with verification code
-function sendMailWithVerificationCode(code, userEmail) {
+async function sendMailWithVerificationCode(code, userEmail) {
     // HTML body containing the verification code
     let htmlBody = `
         <p>Dear User,</p>
-        <p>Thank you for signing up for the Anystore Mobile App.</p>
+        <p>Thank you for signing up for our Torism App.</p>
         <p>Your verification code is: <strong>${code}</strong></p>
         <p>Please use this code to complete the registration process.</p>
         <br>
