@@ -1,8 +1,8 @@
 const express = require('express');
-const encodeJsonWebToken = require('../core/encodeJsonWebToken');
-const hashPassword = require('../core/password_hash');
-const { User } = require('../models/user.model');
-const userInputValidate = require('../validators/user_validation');
+const encodeJsonWebToken = require('../../core/encodeJsonWebToken');
+const hashPassword = require('../../core/password_hash');
+const User = require('../../models/user.model');
+const userInputValidate = require('../../validators/user_validation');
 const bcrypt = require('bcryptjs');
 
 const router = express.Router();
@@ -22,7 +22,7 @@ router.post("/login", async (req, res) => {
             res.status(401).json({ "message": "Invalid password" });
             return;
         }
-        const jwt = encodeJsonWebToken({ email: email });
+        const jwt = await encodeJsonWebToken({ email: email });
         res.json({ "token": jwt });
     }
     catch (e) {

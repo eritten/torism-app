@@ -1,7 +1,7 @@
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
-function encodeJsonWebToken(payLoad) {
+async function encodeJsonWebToken(payLoad) {
     try {
         const encodedValue = jwt.sign(payLoad, config.get("JSONWEBTOKEN"));
         return encodedValue;
