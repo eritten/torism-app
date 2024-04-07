@@ -4,12 +4,25 @@
   "description": "torism app backend",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --watchAll",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "torism-app, backend"
   },
   "author": "eritten",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.11",
+    "express": "^4.18.3",
+    "joi": "^17.12.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.9.2",
+    "sequelize": "^6.37.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  }
 }
