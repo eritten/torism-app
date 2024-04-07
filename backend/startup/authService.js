@@ -3,7 +3,7 @@ const register = require("../routers/users/register");
 const changePassword = require("../routers/users/changePassword");
 const changeEmail = require("../routers/users/changeEmail");
 const reset = require("../routers/users/resetPassword");
-const verifyCode = require("../routers/")
+const verifyCode = require("../routers/users/verifyCode")
 const generateResetCode = require("../routers/users/generateResetCode");
 
 function authService(app) {
