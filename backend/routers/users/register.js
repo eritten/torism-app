@@ -1,9 +1,13 @@
 const express = require('express');
+const bcrypt = require('bcryptjs');
+const lodash = require("lodash");
+
 const encodeJsonWebToken = require('../../core/encodeJsonWebToken');
 const hashPassword = require('../../core/password_hash');
 const User = require('../../models/user.model');
 const userInputValidate = require('../../validators/user_validation');
-const bcrypt = require('bcryptjs');
+const sendMailWithVerificationCode = require("../../core/send_verification-code");
+const generateRandomCode = require("../../core/verification-code-generator");
 
 const router = express.Router();
 
@@ -22,10 +26,12 @@ router.post("/register", async (req, res) => {
         }
 
         const hashedPassword = await hashPassword(req.body.password);
-        await User.create({ email: userEmail, password: hashedPassword, userType: req.body.userType });
+        const user = await User.create({ email: userEmail, password: hashedPassword, userType: req.body.userType });
 
-        const token = await encodeJsonWebToken({ email: userEmail });
-        return res.status(201).json({ token });
+        const code = await generateRandomCode(2);
+        await sendMailWithVerificationCode(code, user.email);
+        const data = lodash.pick(user, ['email'])
+        return res.status(201).json(data);
     } catch (error) {
         console.error("Error in registration:", error);
         return res.status(500).json({ error: "Internal server error" });
